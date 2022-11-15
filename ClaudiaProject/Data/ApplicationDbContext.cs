@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using ClaudiaProject.Models;
 
 namespace ClaudiaProject.Data
 {
@@ -9,5 +10,6 @@ namespace ClaudiaProject.Data
             : base(options)
         {
         }
+        public DbSet<ClaudiaProject.Models.Student> Student { get; set; }
     }
 }
