@@ -19,6 +19,7 @@ namespace ClaudiaProject.Data
             modelBuilder.Entity<Course>().ToTable("Course");
             modelBuilder.Entity<Enrollment>().ToTable("Enrollment");
             modelBuilder.Entity<Student>().ToTable("Student");
+            base.OnModelCreating(modelBuilder);
         }
     }
 }
