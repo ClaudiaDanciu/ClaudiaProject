@@ -21,25 +21,34 @@ namespace ClaudiaProject.Pages.Students
 
         public IActionResult OnGet()
         {
+            Student = new Student
+            {
+                FirstMidName = "Joe",
+                EnrollmentDate = DateTime.Now,
+                LastName = "Smith"
+            };
             return Page();
         }
 
         [BindProperty]
-        public Student Student { get; set; }
-        
 
-        // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
+        public Student Student { get; set; }
+
         public async Task<IActionResult> OnPostAsync()
         {
-          if (!ModelState.IsValid)
+            var emptyStudent = new Student();
+
+            if (await TryUpdateModelAsync<Student>(
+                emptyStudent,
+                "student",   // Prefix for form value.
+                s => s.FirstMidName, s => s.LastName, s => s.EnrollmentDate))
             {
-                return Page();
+                _context.Students.Add(emptyStudent);
+                await _context.SaveChangesAsync();
+                return RedirectToPage("./Index");
             }
 
-            _context.Students.Add(Student);
-            await _context.SaveChangesAsync();
-
-            return RedirectToPage("./Index");
+            return Page();
         }
     }
 }
