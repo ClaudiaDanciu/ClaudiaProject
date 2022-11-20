@@ -1,5 +1,4 @@
 using ClaudiaProject.Models;
-using ClaudiaProject.Models;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
