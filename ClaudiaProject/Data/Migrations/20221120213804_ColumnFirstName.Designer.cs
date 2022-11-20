@@ -4,6 +4,7 @@ using ClaudiaProject.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ClaudiaProject.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221120213804_ColumnFirstName")]
+    partial class ColumnFirstName
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -44,21 +46,6 @@ namespace ClaudiaProject.Data.Migrations
                     b.ToTable("Course", (string)null);
                 });
 
-            modelBuilder.Entity("ClaudiaProject.Models.CourseAssignment", b =>
-                {
-                    b.Property<int>("CourseID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("InstructorID")
-                        .HasColumnType("int");
-
-                    b.HasKey("CourseID", "InstructorID");
-
-                    b.HasIndex("InstructorID");
-
-                    b.ToTable("CourseAssignment", (string)null);
-                });
-
             modelBuilder.Entity("ClaudiaProject.Models.Department", b =>
                 {
                     b.Property<int>("DepartmentID")
@@ -84,7 +71,7 @@ namespace ClaudiaProject.Data.Migrations
 
                     b.HasIndex("InstructorID");
 
-                    b.ToTable("Department", (string)null);
+                    b.ToTable("Department");
                 });
 
             modelBuilder.Entity("ClaudiaProject.Models.Enrollment", b =>
@@ -137,7 +124,7 @@ namespace ClaudiaProject.Data.Migrations
 
                     b.HasKey("ID");
 
-                    b.ToTable("Instructor", (string)null);
+                    b.ToTable("Instructor");
                 });
 
             modelBuilder.Entity("ClaudiaProject.Models.OfficeAssignement", b =>
@@ -151,7 +138,7 @@ namespace ClaudiaProject.Data.Migrations
 
                     b.HasKey("InstructorID");
 
-                    b.ToTable("OfficeAssignement", (string)null);
+                    b.ToTable("OfficeAssignement");
                 });
 
             modelBuilder.Entity("ClaudiaProject.Models.Student", b =>
@@ -407,25 +394,6 @@ namespace ClaudiaProject.Data.Migrations
                         .IsRequired();
 
                     b.Navigation("Department");
-                });
-
-            modelBuilder.Entity("ClaudiaProject.Models.CourseAssignment", b =>
-                {
-                    b.HasOne("ClaudiaProject.Models.Course", "Course")
-                        .WithMany()
-                        .HasForeignKey("CourseID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("ClaudiaProject.Models.Instructor", "Instructor")
-                        .WithMany()
-                        .HasForeignKey("InstructorID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Course");
-
-                    b.Navigation("Instructor");
                 });
 
             modelBuilder.Entity("ClaudiaProject.Models.Department", b =>
