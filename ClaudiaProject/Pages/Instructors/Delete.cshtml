@@ -1,5 +1,6 @@
 ﻿@page
 @model ClaudiaProject.Pages.Instructors.DeleteModel
+
 @{
     ViewData["Title"] = "Delete";
 }
@@ -30,7 +31,7 @@
             @Html.DisplayFor(model => model.Instructor.HireDate)
         </dd>
     </dl>
-
+    
     <form method="post">
         <input type="hidden" asp-for="Instructor.ID" />
         <input type="submit" value="Delete" class="btn btn-danger" /> |

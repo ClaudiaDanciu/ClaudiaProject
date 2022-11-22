@@ -28,7 +28,7 @@ namespace ClaudiaProject
             services.AddRazorPages();
 
             services.AddDbContext<ApplicationDbContext>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("SchoolContext")));
+                    options.UseSqlServer(Configuration.GetConnectionString("ApplicationDbContext")));
 
             services.AddDatabaseDeveloperPageExceptionFilter();
         }
